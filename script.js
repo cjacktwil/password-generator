@@ -1,5 +1,5 @@
 // Assignment Code
-/*var generateBtn = document.querySelector("#generate");
+var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
@@ -8,7 +8,7 @@ function writePassword() {
 
   passwordText.value = password;
 
-}*/
+}
 
 /*collect password length
 collect password requirements - upper, lower, number, symbol
@@ -40,7 +40,7 @@ const UPPERCASE_CHAR_CODES = arrayFromLowToHigh(65, 90)
   }
   */
 
-function passwordLength () {
+ function passwordLength () {
   var length = window.prompt("How many characters would you like to include in your password? Please enter a number between 8 and 128.");
   if (length >= 8 && length <= 128) {
     console.log(length);
@@ -50,43 +50,62 @@ else {
 }
 };
 
-function passwordType () {
-  password.Type = window.confirm("Would you like your password to include lowercase letters?");
-  if (password.Type) {
-    password.Type = "lowercase";
-  }
-  password.Type = window.confirm("Would you like your password to include uppercase letters?");
-  if (password.Type) {
-    password.Type = "uppercase";
-  }
-  password.Type = window.confirm("Would you like your password to include numbers?");
-  if (password.Type) {
-    password.Type = "numbers";
-  }
-  password.Type = window.confirm("Would you like your password to include special characters?");
-  if (password.Type) {
-    password.Type = "special characters";
-  }
-  console.log(password.Type);
-  //currently only logging last type - need to figure out how to add each type as part of the array
-};
-
-var password = {
-  Type: [],
-  HowMany: function() {
-    var passwordTypeLength = passwordLength / password.Length;
-    return passwordTypeLength;
-  }, 
-  Set: function() {
-    for(i=0; i < password.HowMany; i++) {
-      var pw = window.prompt("Please enter a " + password.Type + " character.");
-      return pw;
-    };
-  }
+ var arrayFromLowToHigh = function(low, high) {
+  var array = []
+   for (let i = low; i <= high; i++) {
+     array.push(i)
+   }
+   return array;
   };
 
-passwordLength();
+ var pwFunction = function() {
+  if (passwordTypeOptions[0]) { 
+  var lowCharCodes = arrayFromLowToHigh(97, 122)}
+  else if (passwordTypeOptions[1]) {
+  var upCharCodes = arrayFromLowToHigh(65, 90)}
+  else if (passwordTypeOptions[2]) {
+  var numCharCodes = arrayFromLowToHigh(48, 57)}
+  else if (passwordTypeOptions[3]) {
+  var symCharCodes = arrayFromLowToHigh(33, 47) + "," + arrayFromLowToHigh(58, 64) + "," + arrayFromLowToHigh(91, 96) + "," +  arrayFromLowToHigh(123, 126)}
+console.log(lowCharCodes + upCharCodes + numCharCodes + symCharCodes);  
+};
+
+
+var passwordTypeOptions = ["lowercase letters", "uppercase letters", "numbers", "symbols"];
+function passwordType () {
+  for (i = 0; i < passwordTypeOptions.length; i++) {
+  var options = window.confirm("Would you like your password to include " + passwordTypeOptions[i] + "?");
+  if (options) {
+        console.log(passwordTypeOptions[i]);
+        pwFunction(options);
+        //console.log(charCodes);
+  }
+  }
+};
+
+
+
+ /* var pwFunction = function() {
+  if (passwordTypeOptions[0]) { 
+  var charCodes = arrayFromLowToHigh(97, 122)};
+  if (passwordTypeOptions[1]) {
+  var charCodes = arrayFromLowToHigh(65, 90)};
+  if (passwordTypeOptions[2]) {
+  var charCodes = arrayFromLowToHigh(48, 57)};
+  if (passwordTypeOptions[3]) {
+  var charCodes = arrayFromLowToHigh(33, 47) + "," + arrayFromLowToHigh(58, 64) + "," + arrayFromLowToHigh(91, 96) + "," +  arrayFromLowToHigh(123, 126)};
+console.log(charCodes); 
+};*/
 passwordType();
+pwFunction();
+
+ /* var passwordCharacter = []
+  for (let i = 0; i < length; i++) {
+    var characterCode = charCodes[Math.floor(Math.random() * length)]
+    passwordCharacters.push(String.fromCharCode(characterCode));
+    console.log(passwordCharacter);
+  };*/
+
 
 // Add event listener to generate button
 //generateBtn.addEventListener("click", writePassword);
