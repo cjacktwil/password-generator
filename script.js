@@ -35,37 +35,55 @@ if (length >= 8 && length <= 128) {
 //if entry does not meet the criteria, prompt user to try again
 else {
 window.alert("Your entry is not valid. Please try again.");
+generatePassword();
 };
 
+
+//clear previous charCodes
+charCodes.length = 0;
+//allow user to select character types, concatenate arrays to create master array
 var lowCharCodes = confirm("Would you like your password to include lowercae letters?");
 if (lowCharCodes) {
   charCodes = charCodes.concat (includeLower);  
   console.log(charCodes);
+}
+else {
+  //if character type is not selected, leave charCodes as is
+  charCodes = charCodes;
 };
 
 var upCharCodes = confirm("Would you like your password to include uppercase letters?");
 if (upCharCodes) {
   charCodes = charCodes.concat (includeUpper);
   console.log(charCodes);
+}
+else {
+  charCodes = charCodes;
 };
 
 var numCharCodes = confirm("Would you like your password to include numbers?");
 if (numCharCodes) {
   charCodes = charCodes.concat (includeNumber);
   console.log(charCodes);
+}
+else {
+  charCodes =  charCodes;
 };
 
 var symCharCodes = confirm("Would you like your password to include symbols?");
 if (symCharCodes) {
   charCodes = charCodes.concat (includeSymbol);
-  console.log(charCodes)};
-
-  //use length and selected character types to generate a random password
+  console.log(charCodes);
+}
+else {
+  charCodes = charCodes;
+};
+  //use selected character types and length of array to generate a random password
   var passwordCharacter = []
   for (let i = 0; i < length; i++) {
-      var characterCode = charCodes[Math.floor(Math.random() * length)]
+      var characterCode = charCodes[Math.floor(Math.random() * charCodes.length)]
+      console.log(characterCode);
      passwordCharacter.push(String.fromCharCode(characterCode));
-      //console.log(characterCode);
   }
   return passwordCharacter.join('')
 };
